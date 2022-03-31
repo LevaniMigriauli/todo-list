@@ -2,7 +2,7 @@
   "author": "Levan",
   "version": "5.11.0",
   "description": "Starter project template boilerplate based on Webpack with SASS/PostCSS and babel ES6/7 support.",
-  "homepage": "https://levanimigriauli.github.io/OpenEnterprise/",
+  "homepage": "https://github.com/LevaniMigriauli/Freshness.git",
   "browserslist": [
     "last 2 versions",
     "> 5%"
@@ -55,7 +55,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:LevaniMigriauli/OpenEnterprise.git"
+    "url": "https://github.com/LevaniMigriauli/Freshness.git"
   },
   "scripts": {
     "build": "webpack --config configuration/webpack.dev.config.js --mode=development",
