@@ -1,0 +1,31 @@
+.button-delete {
+  height: 20px;
+  width: 70px;
+}
+
+button {
+  height: 20px;
+  width: auto;
+}
+
+.todo-list__task-item {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+
+  .btns {
+    display: flex;
+    gap: 10px;
+    // align-self: center;
+  }
+}
+
+.todo-list__task-item::after {
+  content: "";
+  background: url(../images/content/logo-linkedin.svg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 30px;
+  // height: auto;
+  cursor: pointer;
+}
