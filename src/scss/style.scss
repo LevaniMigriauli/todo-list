@@ -1,5 +1,36 @@
-// .button-submit {
-//   background: url(../images/content/logo-linkedin.svg);
-//   background-size: cover;
-//   background-position: center;
-// }
+.todo-container {
+  max-width: 240px;
+
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-item {
+    position: relative;
+  }
+
+  .button-edit::after {
+    content: "";
+    background: url(/src/images/content/create-outline.svg);
+    background-size: cover;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 64px;
+    cursor: pointer;
+  }
+  .button-delete::before {
+    content: "";
+    background: url(/src/images/content/trash-outline.svg);
+    background-size: cover;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 24px;
+    cursor: pointer;
+  }
+}
