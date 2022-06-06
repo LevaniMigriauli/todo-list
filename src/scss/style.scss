@@ -8,29 +8,54 @@
   }
 
   .task-item {
+    min-width: 180px;
+    min-height: 25px;
     position: relative;
   }
 
-  .button-edit::after {
+  .btn {
     content: "";
-    background: url(/src/images/content/create-outline.svg);
     background-size: cover;
     background-position: center;
     width: 18px;
     height: 18px;
     position: absolute;
-    right: 64px;
     cursor: pointer;
+    border: none;
   }
-  .button-delete::before {
-    content: "";
+
+  .button-edit {
+    // content: "";
+    background: url(/src/images/content/create-outline.svg);
+    // background-size: cover;
+    // background-position: center;
+    // width: 18px;
+    // height: 18px;
+    // position: absolute;
+    right: 64px;
+    // cursor: pointer;
+  }
+  .button-delete {
+    // content: "";
     background: url(/src/images/content/trash-outline.svg);
-    background-size: cover;
-    background-position: center;
-    width: 18px;
-    height: 18px;
-    position: absolute;
+    // background-size: cover;
+    // background-position: center;
+    // width: 18px;
+    // height: 18px;
+    // position: absolute;
     right: 24px;
-    cursor: pointer;
+    // cursor: pointer;
+  }
+
+  .button-submit {
+    // content: "";
+    background: url(/src/images/content/checkmark-done-circle-outline.svg);
+    // background-size: cover;
+    // background-position: center;
+    // width: 18px;
+    // height: 18px;
+    // position: absolute;
+    right: 44px;
+    // cursor: pointer;
   }
 }
