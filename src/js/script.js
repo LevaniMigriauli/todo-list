@@ -1,16 +1,20 @@
 "use strict";
 
-const taskList = document.querySelector(".task-list");
+const taskList = document.querySelector(".task-list"); //UL
 const btnAdd = document.querySelector(".btn-add");
 const input = document.querySelector(".task-input");
 
+document.addEventListener("keydown", function (enter) {
+  console.log(enter.key);
+});
+
 btnAdd.addEventListener("click", function () {
-  const taskItem = document.createElement("li");
+  const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item");
+  taskItem.classList.add("task-item");
   const taskContent = input.value;
   taskList.appendChild(taskItem).textContent = taskContent;
-  taskItem.classList.add("task-item");
 
-  // Add Edit & Delete buttons
+  /* Add Edit & Delete buttons */
   const btnEdit = document.createElement("button");
   btnEdit.classList.add("btn");
   taskItem.appendChild(btnEdit).classList.add("button-edit");
@@ -22,19 +26,44 @@ btnAdd.addEventListener("click", function () {
   // taskItem.classList.add("button-edit");
   // taskItem.classList.add("button-delete");
 
+  /* Add functionality of edit & delete buttons */
+  btnDelete.addEventListener("click", function () {
+    // console.log(this.parentElement.parentNode.removeChild);
+    this.parentElement.parentNode.removeChild(this.parentNode /* taskItem? */);
+    // this.parentElement.parentNode.innerHTML = "";
+  });
+
   btnEdit.addEventListener("click", function () {
     const taskText = this.parentNode.textContent;
-    console.log(taskText);
     // this.parentNode.parentElement.removeChild(taskItem);
     this.parentNode.innerHTML = "";
     const taskEditInput = document.createElement("input");
-    taskEditInput.classList.add("btn");
-    taskItem.appendChild(taskEditInput).classList.add("button-submit");
-    taskEditInput.innerText = taskText;
-    // console.log(this.parentElement);
+    taskItem.appendChild(taskEditInput).value = taskText;
 
-    // taskItem.classList.add("btn");
-    // this.parentNode.classList.add("button-submit");
+    // Add SUBMIT button
+    const btnSubmit = document.createElement("button");
+    btnSubmit.classList.add("btn");
+    taskItem.appendChild(btnSubmit).classList.add("button-submit");
+    /* add SUBMIT button functionality */
+    btnSubmit.addEventListener("click", function () {
+      const taskTextEdited = this.previousSibling.value;
+      // this.parentNode.removeChild(taskItem.firstChild);
+      // this.parentNode.removeChild(taskItem.lastChild);
+      // ზედა ვერსიაც მუშაობს
+      this.parentNode.innerHTML = "";
+      console.log(this.parentElement);
+      console.log(btnDelete, btnEdit);
+      taskItem.textContent = taskTextEdited;
+      taskItem.appendChild(btnEdit);
+      taskItem.appendChild(btnDelete);
+      // this.parentElement.appendChild(btnEdit);
+      // this.parentElement.appendChild(btnDelete);
+      // this.parentNode.textContent = taskTextEdited;
+
+      // this.parentNode.appendChild(taskItem).classList.add("button-delete");
+      // this.parentNode.appendChild.input.value = taskTextEdited;
+      // taskItem.appendChild(btnEdit).classList.add("button-edit");
+    });
   });
 });
 
