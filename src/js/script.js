@@ -4,9 +4,14 @@ const taskList = document.querySelector(".task-list"); //UL
 const btnAdd = document.querySelector(".btn-add");
 const input = document.querySelector(".task-input");
 
-document.addEventListener("keydown", function (enter) {
-  console.log(enter.key);
-});
+// document.addEventListener("keydown", function (e) {
+//   if (e.key === "Enter") {
+//     const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item");
+//     taskItem.classList.add("task-item");
+//     const taskContent = input.value;
+//     taskList.appendChild(taskItem).textContent = taskContent;
+//   }
+// });
 
 btnAdd.addEventListener("click", function () {
   const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item");
