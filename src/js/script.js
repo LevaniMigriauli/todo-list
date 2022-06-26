@@ -12,9 +12,8 @@ const input = document.querySelector(".task-input");
 //     taskList.appendChild(taskItem).textContent = taskContent;
 //   }
 // });
-
-btnAdd.addEventListener("click", function () {
-  const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item");
+const taskAdd = function () {
+  const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item"); ჯერ append რადგან არ გაგვიკეთებია?
   taskItem.classList.add("task-item");
   const taskContent = input.value;
   taskList.appendChild(taskItem).textContent = taskContent;
@@ -32,13 +31,14 @@ btnAdd.addEventListener("click", function () {
   // taskItem.classList.add("button-delete");
 
   /* Add functionality of edit & delete buttons */
-  btnDelete.addEventListener("click", function () {
+  const taskDelete = function () {
     // console.log(this.parentElement.parentNode.removeChild);
     this.parentElement.parentNode.removeChild(this.parentNode /* taskItem? */);
     // this.parentElement.parentNode.innerHTML = "";
-  });
+  };
+  btnDelete.addEventListener("click", taskDelete);
 
-  btnEdit.addEventListener("click", function () {
+  const taskEdit = function () {
     const taskText = this.parentNode.textContent;
     // this.parentNode.parentElement.removeChild(taskItem);
     this.parentNode.innerHTML = "";
@@ -50,14 +50,12 @@ btnAdd.addEventListener("click", function () {
     btnSubmit.classList.add("btn");
     taskItem.appendChild(btnSubmit).classList.add("button-submit");
     /* add SUBMIT button functionality */
-    btnSubmit.addEventListener("click", function () {
+    const taskSubmit = function () {
       const taskTextEdited = this.previousSibling.value;
       // this.parentNode.removeChild(taskItem.firstChild);
       // this.parentNode.removeChild(taskItem.lastChild);
       // ზედა ვერსიაც მუშაობს
       this.parentNode.innerHTML = "";
-      console.log(this.parentElement);
-      console.log(btnDelete, btnEdit);
       taskItem.textContent = taskTextEdited;
       taskItem.appendChild(btnEdit);
       taskItem.appendChild(btnDelete);
@@ -68,10 +66,18 @@ btnAdd.addEventListener("click", function () {
       // this.parentNode.appendChild(taskItem).classList.add("button-delete");
       // this.parentNode.appendChild.input.value = taskTextEdited;
       // taskItem.appendChild(btnEdit).classList.add("button-edit");
-    });
-  });
+    };
+    btnSubmit.addEventListener("click", taskSubmit);
+    // btnSubmit.addEventListener("keydown", function (e) {
+    //   if (e.key === "Enter" || e.key === "Escape") taskSubmit(); // აქ როგორ დავამატო ენთერ & ესქეიფზე დასაბმითება ისე რომ დაბლა add-ზე არ იმუშაოს
+    // });
+  };
+  btnEdit.addEventListener("click", taskEdit);
+};
+btnAdd.addEventListener("click", taskAdd);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") taskAdd();
 });
-
 // const btnEdit = document.querySelector(".button-edit");
 // const btnEditAfter = window.getComputedStyle(btnEdit, "::after");
 // const content = btnEditAfter["content"];
