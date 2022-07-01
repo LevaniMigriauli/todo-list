@@ -4,35 +4,28 @@ const taskList = document.querySelector(".task-list"); //UL
 const btnAdd = document.querySelector(".btn-add");
 const input = document.querySelector(".task-input");
 
-// document.addEventListener("keydown", function (e) {
-//   if (e.key === "Enter") {
-//     const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item");
-//     taskItem.classList.add("task-item");
-//     const taskContent = input.value;
-//     taskList.appendChild(taskItem).textContent = taskContent;
-//   }
-// });
 const taskAdd = function () {
   const taskItem = document.createElement("li"); //აქვე რატომ ვერ წაიღებს - .classList.add("task-item"); ჯერ append რადგან არ გაგვიკეთებია?
   taskItem.classList.add("task-item");
   const taskContent = input.value;
-  taskList.appendChild(taskItem).textContent = taskContent;
+  taskItem.textContent = taskContent;
+
+  taskList.appendChild(taskItem);
 
   /* Add Edit & Delete buttons */
   const btnEdit = document.createElement("button");
-  btnEdit.classList.add("btn");
-  taskItem.appendChild(btnEdit).classList.add("button-edit");
+  btnEdit.classList.add("btn", "button-edit");
+  taskItem.appendChild(btnEdit);
 
   const btnDelete = document.createElement("button");
-  btnDelete.classList.add("btn");
-  taskItem.appendChild(btnDelete).classList.add("button-delete");
-  // taskItem.appendChild()
-  // taskItem.classList.add("button-edit");
-  // taskItem.classList.add("button-delete");
+  btnDelete.classList.add("btn", "button-delete");
+  taskItem.appendChild(btnDelete);
+
+  /* INPUT-ის გასუფთავება ახალი თასქისთვის */
+  input.value = "";
 
   /* Add functionality of edit & delete buttons */
   const taskDelete = function () {
-    // console.log(this.parentElement.parentNode.removeChild);
     this.parentElement.parentNode.removeChild(this.parentNode /* taskItem? */);
     // this.parentElement.parentNode.innerHTML = "";
   };
@@ -44,38 +37,34 @@ const taskAdd = function () {
     this.parentNode.innerHTML = "";
     const taskEditInput = document.createElement("input");
     taskItem.appendChild(taskEditInput).value = taskText;
+    taskItem.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        // editInputs-ზე დავამატო
+        taskSubmit();
+      }
+    });
 
     // Add SUBMIT button
     const btnSubmit = document.createElement("button");
-    btnSubmit.classList.add("btn");
-    taskItem.appendChild(btnSubmit).classList.add("button-submit");
+    btnSubmit.classList.add("btn", "button-submit");
+    taskItem.appendChild(btnSubmit);
     /* add SUBMIT button functionality */
     const taskSubmit = function () {
       const taskTextEdited = this.previousSibling.value;
-      // this.parentNode.removeChild(taskItem.firstChild);
-      // this.parentNode.removeChild(taskItem.lastChild);
-      // ზედა ვერსიაც მუშაობს
       this.parentNode.innerHTML = "";
       taskItem.textContent = taskTextEdited;
       taskItem.appendChild(btnEdit);
       taskItem.appendChild(btnDelete);
-      // this.parentElement.appendChild(btnEdit);
-      // this.parentElement.appendChild(btnDelete);
-      // this.parentNode.textContent = taskTextEdited;
-
-      // this.parentNode.appendChild(taskItem).classList.add("button-delete");
-      // this.parentNode.appendChild.input.value = taskTextEdited;
-      // taskItem.appendChild(btnEdit).classList.add("button-edit");
     };
     btnSubmit.addEventListener("click", taskSubmit);
     // btnSubmit.addEventListener("keydown", function (e) {
-    //   if (e.key === "Enter" || e.key === "Escape") taskSubmit(); // აქ როგორ დავამატო ენთერ & ესქეიფზე დასაბმითება ისე რომ დაბლა add-ზე არ იმუშაოს
+    //   if (e.key === "Enter" || e.key === "Escape") taskSubmit(); // აქ როგორ დავამატო ენთერ & ესქეიფზე დასაბმითება ისე რომ დაბლა add-ზე არ იმუშაოს global event არ უნდა იყოს
     // });
   };
   btnEdit.addEventListener("click", taskEdit);
 };
 btnAdd.addEventListener("click", taskAdd);
-document.addEventListener("keydown", (e) => {
+input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") taskAdd();
 });
 // const btnEdit = document.querySelector(".button-edit");
@@ -88,3 +77,5 @@ document.addEventListener("keydown", (e) => {
 //   btnEdit.addEventListener("click", function () {
 //     console.log(this);
 //   });
+
+// local storage დარეფრეშებისას რომ შეინახოს
